@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity ^0.8.13;
 
+import "forge-std/console.sol";
+
 contract FilterOddNumbers {
     /*
         This exercise assumes you understand how to manipulate Array.
@@ -12,9 +14,24 @@ contract FilterOddNumbers {
 
     function filterOdd(uint256[] memory _arr)
         public
-        view
+        pure
         returns (uint256[] memory)
     {
         // your code here
+        uint count;
+        for(uint i = 0; i < _arr.length; i++){
+            if(_arr[i] % 2 == 0){
+                count++;
+            }
+        }
+        uint[] memory res = new uint[](count);
+        uint position;
+        for(uint i = 0; i < _arr.length; i++){
+            if(_arr[i] % 2 == 0){
+                res[position] = _arr[i];
+                position++;
+            }
+        }
+        return res;
     }
 }
