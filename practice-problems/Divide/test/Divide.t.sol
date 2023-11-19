@@ -15,7 +15,7 @@ contract DivideTest is Test {
         assertEq(
             divide.PERCENTAGE_INTEREST(),
             3,
-            "percentage interst must equal 3 and shouldn;t be changed"
+            "percentage interest must equal 3 and shouldn't be changed"
         );
 
         assertEq(
