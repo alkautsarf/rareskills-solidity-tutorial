@@ -6,7 +6,7 @@ import {SkillsCoin} from "../src/SkillsCoin.sol";
 import {RareCoin} from "../src/RareCoin.sol";
 import "forge-std/console.sol";
 
-contract CoinTest is Test {
+contract CoinsTest is Test {
     SkillsCoin public skillsCoin;
     RareCoin public rareCoin;
 
