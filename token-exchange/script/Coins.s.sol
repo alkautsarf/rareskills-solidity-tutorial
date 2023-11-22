@@ -9,12 +9,13 @@ import "forge-std/console.sol";
 contract CoinsScript is Script {
     SkillsCoin skillsCoin;
     RareCoin rareCoin;
+
     function setUp() public {}
 
     function run() public {
-        uint privateKey = vm.envUint("PRIVATE_KEY");
+        uint256 privateKey = vm.envUint("PRIVATE_KEY");
         address account = vm.addr(privateKey);
-        uint _amount = 1000e18;
+        uint256 _amount = 1000e18;
 
         console.log("Account", account);
         vm.startBroadcast(privateKey);
