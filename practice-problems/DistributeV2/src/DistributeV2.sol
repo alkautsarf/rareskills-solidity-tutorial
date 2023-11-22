@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: BUSL-1.1
 pragma solidity ^0.8.13;
 
+import "forge-std/console.sol";
+
 contract DistributeV2 {
     /*
         This exercise assumes you know how to sending Ether.
@@ -13,7 +15,16 @@ contract DistributeV2 {
 
     constructor() payable {}
 
+    event Log(address indexed, string);
     function distributeEther(address[] memory addresses) public {
         // your code here
+        uint eqBal = address(this).balance / addresses.length;
+        for (uint i = 0; i < addresses.length; i++) {
+            (bool ok, ) = addresses[i].call{value: eqBal}("");
+            if(!ok) {
+                emit Log(addresses[i], "rejected");
+                continue;
+            }
+        }
     }
 }

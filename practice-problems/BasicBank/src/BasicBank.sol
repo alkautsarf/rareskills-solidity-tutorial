@@ -7,5 +7,9 @@ contract BasicBank {
     function addEther() external payable {}
 
     /// @notice used to withdraw ether from the contract (No restriction on withdrawals)
-    function removeEther(uint256 amount) external payable {}
+    function removeEther(uint256 amount) external payable {
+        // require(address(msg.sender).balance >= amount, "Insufficient Balance");
+        (bool ok,) = msg.sender.call{value: amount}("");
+        require(ok, "Failed to withdraw");
+    }
 }

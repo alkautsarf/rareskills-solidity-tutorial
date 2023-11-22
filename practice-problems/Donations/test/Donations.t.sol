@@ -31,8 +31,8 @@ contract DonationsTest is Test {
             "expected amountDonated by address(BEEF) to be 1 ether"
         );
 
-        vm.deal(address(0xCAFE), 1 ether);
-        vm.prank(address(0xCAFE));
+        vm.deal(address(0xCAFE), 2 ether);
+        vm.startPrank(address(0xCAFE));
         (success, ) = address(donations).call{value: 1 ether}("");
         require(success, "Send ether failed");
         assertEq(
@@ -40,5 +40,14 @@ contract DonationsTest is Test {
             1 ether,
             "expected amountDonated by address(0xCAFE) to be 1 ether"
         );
+
+        (success, ) = address(donations).call{value: 1 ether}("");
+        require(success, "Send ether failed");
+        assertEq(
+            donations.amountDonated(address(0xCAFE)),
+            2 ether,
+            "expected amountDonated by address(0xCAFE) to be 2 ether"
+        );
+        vm.stopPrank();
     }
 }

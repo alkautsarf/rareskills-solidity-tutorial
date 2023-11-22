@@ -12,6 +12,11 @@ contract Distribute {
     constructor() payable {}
 
     function distributeEther(address[] memory addresses) public {
+        uint eqBal = address(this).balance / addresses.length;
+        for(uint i; i < addresses.length; i++) {
+            (bool ok, ) = addresses[i].call{value: eqBal}("");
+            require(ok, "Can't send Ether");
+        }
         // your code here
     }
 }
