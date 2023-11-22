@@ -17,13 +17,9 @@ contract TimelockEscrowTest is Test {
         vm.deal(address(this), 1 ether);
         vm.deal(SELLER, 1 ether);
         timelockEscrow.createBuyOrder{value: 1 ether}();
-        assertEq(
-            timelockEscrow.buyerDeposit(address(this)),
-            1 ether,
-            "buyer deposit should return 1 ether"
-        );
+        assertEq(timelockEscrow.buyerDeposit(address(this)), 1 ether, "buyer deposit should return 1 ether");
 
-        // seller attempt to withdraw before 3 days
+        //seller attempt to withdraw before 3 days
         vm.startPrank(SELLER);
         vm.expectRevert();
         timelockEscrow.sellerWithdraw(address(this));
@@ -55,11 +51,7 @@ contract TimelockEscrowTest is Test {
     function testTimelockBuyerWithdraws() public {
         vm.deal(address(this), 1 ether);
         timelockEscrow.createBuyOrder{value: 1 ether}();
-        assertEq(
-            timelockEscrow.buyerDeposit(address(this)),
-            1 ether,
-            "buyer deposit should return 1 ether"
-        );
+        assertEq(timelockEscrow.buyerDeposit(address(this)), 1 ether, "buyer deposit should return 1 ether");
 
         uint256 timeStamp = block.timestamp;
 
@@ -84,9 +76,7 @@ contract TimelockEscrowTest is Test {
             "expected 1 ether as balance change of the escrow contract after seller withdraws"
         );
         assertEq(
-            buyerAfter - buyerBefore,
-            1 ether,
-            "expected 1 ether as balance change of the seller after seller withdraws"
+            buyerAfter - buyerBefore, 1 ether, "expected 1 ether as balance change of the seller after seller withdraws"
         );
     }
 

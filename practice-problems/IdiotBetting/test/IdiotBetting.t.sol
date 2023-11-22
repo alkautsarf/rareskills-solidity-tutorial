@@ -27,11 +27,7 @@ contract IdiotBettingTest is Test {
         vm.prank(player2);
         vm.expectRevert();
         idiotBetting.claimPrize();
-        assertEq(
-            player2.balance,
-            0,
-            "err: Player2 can claim without being the winner."
-        );
+        assertEq(player2.balance, 0, "err: Player2 can claim without being the winner.");
 
         // player2 bet 4 eth at 30 minutes
         vm.warp(1800);
@@ -43,11 +39,7 @@ contract IdiotBettingTest is Test {
         vm.prank(player1);
         vm.expectRevert();
         idiotBetting.claimPrize();
-        assertEq(
-            player1.balance,
-            0,
-            "err: Player1 can claim without being the winner."
-        );
+        assertEq(player1.balance, 0, "err: Player1 can claim without being the winner.");
 
         // player2 tries to claim after 1 hour passed, should not revert
         vm.warp(7200);
@@ -99,11 +91,7 @@ contract IdiotBettingTest is Test {
         // player2 tries to claim, should not revert
         vm.prank(player3);
         idiotBetting.claimPrize();
-        assertEq(
-            player3.balance,
-            16 ether,
-            "err: expect winner balance to be 16 ether."
-        );
+        assertEq(player3.balance, 16 ether, "err: expect winner balance to be 16 ether.");
 
         // player4 tries to claim, should revert because not winner
         vm.prank(player4);

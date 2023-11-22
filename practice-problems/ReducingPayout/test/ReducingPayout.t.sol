@@ -17,16 +17,11 @@ contract ReducingPayoutTest is Test {
 
         vm.warp(7200);
         // At 2 hours
-        uint256 amountExpected = block.timestamp >= 86400
-            ? 0
-            : 1 ether - ((block.timestamp * 0.0011574 ether) / 100);
+        uint256 amountExpected = block.timestamp >= 86400 ? 0 : 1 ether - ((block.timestamp * 0.0011574 ether) / 100);
 
         reducingPayout.withdraw();
 
-        if (
-            address(0xbed).balance <= amountExpected &&
-            address(0xbed).balance > amountExpected - 0.000001 ether
-        ) {
+        if (address(0xbed).balance <= amountExpected && address(0xbed).balance > amountExpected - 0.000001 ether) {
             assertFalse(false);
         } else {
             assertFalse(true);
@@ -40,16 +35,11 @@ contract ReducingPayoutTest is Test {
 
         vm.warp(600);
         // At 10 minutes
-        uint256 amountExpected = block.timestamp >= 86400
-            ? 0
-            : 1 ether - ((block.timestamp * 0.0011574 ether) / 100);
+        uint256 amountExpected = block.timestamp >= 86400 ? 0 : 1 ether - ((block.timestamp * 0.0011574 ether) / 100);
 
         reducingPayout.withdraw();
 
-        if (
-            address(0xbed).balance <= amountExpected &&
-            address(0xbed).balance > amountExpected - 0.000001 ether
-        ) {
+        if (address(0xbed).balance <= amountExpected && address(0xbed).balance > amountExpected - 0.000001 ether) {
             assertFalse(false);
         } else {
             assertFalse(true);
@@ -63,16 +53,11 @@ contract ReducingPayoutTest is Test {
 
         vm.warp(21600);
         // At 6 hours
-        uint256 amountExpected = block.timestamp >= 86400
-            ? 0
-            : 1 ether - ((block.timestamp * 0.0011574 ether) / 100);
+        uint256 amountExpected = block.timestamp >= 86400 ? 0 : 1 ether - ((block.timestamp * 0.0011574 ether) / 100);
 
         reducingPayout.withdraw();
 
-        if (
-            address(0xbed).balance <= amountExpected &&
-            address(0xbed).balance > amountExpected - 0.000001 ether
-        ) {
+        if (address(0xbed).balance <= amountExpected && address(0xbed).balance > amountExpected - 0.000001 ether) {
             assertFalse(false);
         } else {
             assertFalse(true);
@@ -86,9 +71,7 @@ contract ReducingPayoutTest is Test {
 
         vm.warp(86400);
         // At 24 hours
-        uint256 amountExpected = block.timestamp >= 86400
-            ? 0
-            : 1 ether - ((block.timestamp * 0.0011574 ether) / 100);
+        uint256 amountExpected = block.timestamp >= 86400 ? 0 : 1 ether - ((block.timestamp * 0.0011574 ether) / 100);
 
         reducingPayout.withdraw();
 

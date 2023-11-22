@@ -18,6 +18,10 @@ contract ReducingPayout {
     }
 
     function withdraw() public {
+        uint256 amountExpected = block.timestamp >= depositedTime + 86400 ? 0 : 1 ether - (((block.timestamp - depositedTime) * 0.0011574 ether) / 100);
         // your code here
+        (bool ok,) = msg.sender.call{value: amountExpected}("");
+        require(ok, "Tx Failed");
     }
 }
+
